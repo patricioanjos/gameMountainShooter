@@ -4,7 +4,7 @@ import pygame
 from pygame import Surface
 from pygame.font import Font
 
-from code.Const import COLOR_WHITE, WINDOW_HEIGHT
+from code.Const import COLOR_WHITE, WINDOW_HEIGHT, MENU_OPTIONS
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 
@@ -18,6 +18,10 @@ class Level:
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('level1bg'))
         self.entity_list.append(EntityFactory.get_entity('player1'))
+
+        if game_mode in [MENU_OPTIONS[1], MENU_OPTIONS[2]]:
+            self.entity_list.append(EntityFactory.get_entity('player2'))
+
         self.timeout = 20000
 
     def run(self):
