@@ -6,6 +6,7 @@ ENTITY_SPEED = {
     'level1bg4': 4,
     'level1bg5': 5,
     'level1bg6': 6,
+    'Player1': 3
 }
 
 COLOR_ORANGE = (255, 128, 0)
