@@ -6,9 +6,11 @@ from pygame import Surface
 from pygame.font import Font
 
 from code.Const import COLOR_WHITE, WINDOW_HEIGHT, MENU_OPTIONS, EVENT_ENEMY, SPAWN_TIME
+from code.Enemy import Enemy
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
+from code.Player import Player
 
 
 class Level:
@@ -37,6 +39,11 @@ class Level:
             for entity in self.entity_list:
                 self.window.blit(source=entity.surf, dest=entity.rect)
                 entity.move()
+
+                if isinstance(entity, (Player, Enemy)):
+                    shoot = entity.shoot()
+                    if shoot is not None:
+                        self.entity_list.append(shoot)
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
